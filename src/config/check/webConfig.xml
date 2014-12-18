@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd
+       http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd">
+	<bean id="login" class="com.allinpay.check.LoginService">
+		<property name="sourceMap">
+			<map>
+				<entry key="SQL">
+					<value>
+<![CDATA[
+SELECT T.OPERMAN_NAME USER_NAME, T.OPERMAN_ID USER_ID
+  FROM TEST T
+ WHERE T.ACCOUT =  ${USER_ACC<STRING>} 
+   AND T.OPER_PASS = FUNC_MD5(${USER_PWD<STRING>})
+]]>
+					</value>
+				</entry>
+				<entry key="VIEW" value="${v.toJson()}" />
+			</map>
+		</property>
+	</bean>
+	<bean id="updPwd" class="com.prism.service.impl.basic.NormalUptService">
+		<property name="sourceMap">
+			<map>
+				<entry key="SQL">
+					<value>
+<![CDATA[
+UPDATE TEST T SET T.OPER_PASS = FUNC_MD5(${NEW_USER_PWD<STRING>})
+WHERE T.OPERMAN_ID = ${session.get('USER_ID')<INT>}
+  AND T.OPER_PASS = FUNC_MD5(${OLD_USER_PWD<STRING>})
+]]>
+					</value>
+				</entry>
+				<entry key="VIEW" value="${v.toJson()}" />
+			</map>
+		</property>
+	</bean>
+	
+
+</beans>
