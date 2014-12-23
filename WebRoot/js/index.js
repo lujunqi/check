@@ -61,7 +61,7 @@ function updPwd(){
 			$.post(url,param,function(data){
 
 				data = $.parseJSON(data);
-				if(data.code !='1' && data["result"] == 1){
+				if(data["result"] == 1){
 					alert("修改成功");
 //					init();
 				}else{

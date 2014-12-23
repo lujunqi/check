@@ -2,7 +2,7 @@
 <!DOCTYPE HTML>
 <html>
 <head>
-<title>通联对账系统</title>
+<title>防伪查询</title>
 <meta charset="utf-8">
 <meta name="keywords" content=".........">
 <meta name="description" content=".........">
@@ -67,25 +67,15 @@ function dialog(v_content){
     <div class="form" id="myForm" >
     
         <ul>
-        <li><label>登录方式</label>
-        <input type="radio" checked="checked" name="login_type" value="1">商户
-        <input type="radio" name="login_type" value="2">客户
-        
-        </li>
+
         <li><label>用户名：</label><span class="inputWrap"><span class="fix">
         <input class="txt"  type="text" id="USER_ACC" name="USER_ACC" />
         </span></span></li>
         <li><label>密　码：</label><span class="inputWrap"><span class="fix">
         <input class="txt" id="USER_PWD" type="password"
          name="USER_PWD" /></span></span></li>
-        <!--  
-        <li><label>验证码：</label><span class="inputWrap short"><span class="fix">
-        <input class="txt" type="text" name="valcode" size="5" id="valcode" valida="[{type:'isNull',msg:'验证码不能为空'}]" /></span></span>
-        <a href="#" class="getCode">获取验证码</a></li>
-        -->
         <li class="btns">
         <input class="loginBtn" type="submit" value="登录" id="Submit" />
-        <!--<a href="#" class="getCode">忘记密码?</a>-->
         </li>
         </ul>
     

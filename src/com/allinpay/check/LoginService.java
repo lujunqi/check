@@ -39,6 +39,8 @@ public class LoginService extends BaseService {
 				HttpSession session = req.getSession();
 				session.setAttribute("USER_ID", list.get(0).get("USER_ID"));
 				session.setAttribute("USER_NAME", list.get(0).get("USER_NAME"));
+				session.setAttribute("USER_CODE", list.get(0).get("USER_CODE"));
+				
 			}
 
 			String action = (String) reqMap.get("_action");

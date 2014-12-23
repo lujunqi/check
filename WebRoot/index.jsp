@@ -10,7 +10,7 @@ if(user_id==null){
 <!DOCTYPE HTML>
 <html>
 <head>
-<title>通联对账管理系统</title>
+<title>防伪查询</title>
 <meta charset="utf-8">
 <meta name="keywords" content=".........">
 <meta name="description" content=".........">
@@ -62,14 +62,12 @@ if(user_id==null){
     <div class="sidebar">
       <ul class="sideNav">
         <li class="major">
-          <h2 class="subtit"><a class="" href="#" target="main"><span class="">事故跟单</span></a></h2>
+          <h2 class="subtit"><a class="" href="#" target="main"><span class="">防伪查询</span></a></h2>
           <ul class="sublist" >
-            <li><a target="main" href="page/vehicle_list.jsp">车型信息</a></li>
-            <li><a target="main"  href="page/mobile_list.jsp">手机卡信息</a></li>
-            <li><a target="main" href="page/insurer_list.jsp">保险公司信息</a></li>
-            <li><a target="main" href="page/alloc_rule_list.jsp">自动派单</a></li>
-            <li><a target="main" href="page/task1_list.jsp">手工派单</a></li>
+            <li><a target="main" href="page/vali_list.jsp">防伪查询</a></li>
+			<li><a target="main" href="page/vali_create.jsp">生成防伪码</a></li>
           </ul>
+		  
         </li>
 
         <li class="major">

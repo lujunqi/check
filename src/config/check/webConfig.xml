@@ -11,26 +11,10 @@
 				<entry key="SQL">
 					<value>
 <![CDATA[
-SELECT T.OPERMAN_NAME USER_NAME, T.OPERMAN_ID USER_ID
-  FROM TEST T
- WHERE T.ACCOUT =  ${USER_ACC<STRING>} 
-   AND T.OPER_PASS = FUNC_MD5(${USER_PWD<STRING>})
-]]>
-					</value>
-				</entry>
-				<entry key="VIEW" value="${v.toJson()}" />
-			</map>
-		</property>
-	</bean>
-	<bean id="updPwd" class="com.prism.service.impl.basic.NormalUptService">
-		<property name="sourceMap">
-			<map>
-				<entry key="SQL">
-					<value>
-<![CDATA[
-UPDATE TEST T SET T.OPER_PASS = FUNC_MD5(${NEW_USER_PWD<STRING>})
-WHERE T.OPERMAN_ID = ${session.get('USER_ID')<INT>}
-  AND T.OPER_PASS = FUNC_MD5(${OLD_USER_PWD<STRING>})
+SELECT T.comm_name USER_NAME,T.comm_id USER_ID,t.comm_code USER_CODE
+  FROM t_comm T
+ WHERE T.comm_code = ${USER_ACC<STRING>} 
+   AND T.comm_pwd = ${USER_PWD<STRING>} 
 ]]>
 					</value>
 				</entry>
@@ -39,5 +23,78 @@ WHERE T.OPERMAN_ID = ${session.get('USER_ID')<INT>}
 		</property>
 	</bean>
 	
+	<bean id="updPwd" class="com.prism.service.impl.basic.NormalUptService">
+		<property name="sourceMap">
+			<map>
+				<entry key="SQL">
+					<value>
+<![CDATA[
+UPDATE t_comm T SET T.comm_pwd = ${NEW_USER_PWD<STRING>}
+WHERE T.comm_id = ${session.get('USER_ID')<INT>}
+  AND T.comm_pwd = ${OLD_USER_PWD<STRING>}
+]]>
+					</value>
+				</entry>
+				<entry key="VIEW" value="${v.toJson()}" />
+			</map>
+		</property>
+	</bean>
+	
+	<bean id="vali_list" class="com.prism.service.impl.basic.NormalSltService">
+		<property name="sourceMap">
+			<map>
+				<entry key="DSQL">
+					<value>
+<![CDATA[
+SELECT validate_num,validate_code,validate_id,validate_status
+  FROM T_VALIDATE
+ WHERE comm_id = $v.set("session.get('USER_ID')","INT") 
+#if(!$v.isEmpty("code"))
+   AND validate_code = $v.set("code","STRING")
+#end
+ ORDER BY validate_id
+]]>
+					</value>
+				</entry>
+				<entry key="VIEW" value="${v.toJson()}" />
+			</map>
+		</property>
+	</bean>
+	<bean id="vali_list_total" class="com.prism.service.impl.basic.NormalSltService">
+		<property name="sourceMap">
+			<map>
+				<entry key="SQL">
+					<value>
+<![CDATA[
+SELECT count(1) total
+  FROM T_VALIDATE
+ WHERE comm_id = $v.set("session.get('USER_ID')","INT") 
+#if(!$v.isEmpty("code"))
+   AND validate_code = $v.set("code","STRING")
+#end
+]]>
+					</value>
+				</entry>
+				<entry key="VIEW" value="${v.toJson()}" />
+			</map>
+		</property>
+	</bean>
+	
+	<bean id="vali_create" class="com.allinpay.check.ValiCreate">
+		<property name="sourceMap">
+			<map>
+				<entry key="SQL">
+					<value>
+<![CDATA[
+INSERT INTO T_VALIDATE(validate_code,comm_id,validate_num,validate_status)
+values(${code<STRING>},${session.get('USER_ID')<INT>},0,0)
+]]>
+					</value>
+				</entry>
+				<entry key="VIEW" value="${v.toJson()}" />
+			</map>
+		</property>
+	</bean>
+		
 
 </beans>

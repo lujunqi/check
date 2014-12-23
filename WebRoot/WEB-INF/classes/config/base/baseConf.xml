@@ -18,10 +18,12 @@
 
 		<property name="JDBC">
 			<map>
-				<entry key="username" value="hncust2" />
-				<entry key="password" value="hncust2allinpay" />
-				<entry key="url" value="jdbc:oracle:thin:@10.80.1.188:1521:hnaps" />
-				<entry key="driverClassName" value="oracle.jdbc.OracleDriver" />
+				<entry key="username" value="root" />
+				<entry key="password" value="123456" />
+				<entry key="url" value="jdbc:mysql://localhost/dodou?characterEncoding=UTF-8">
+					
+				</entry>
+				<entry key="driverClassName" value="com.mysql.jdbc.Driver" />
 			</map>
 		</property>
 
