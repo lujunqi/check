@@ -20,7 +20,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 $(init);
 function init(){
 	$("#list").prism({
-	content: "ajax:vali_list.do"
+	content: "ajax:vali_list.do",
+	pageUrl:"vali_list_total.do"
 	});
 }
 function find(){
@@ -28,6 +29,7 @@ function find(){
 	param["code"] = $("#code").val();
 	$("#list").prism({
 	content: "ajax:vali_list.do",
+	pageUrl:"vali_list_total.do",
 	param:param
 	});
 }
@@ -81,7 +83,9 @@ function setStatus(data){
 	</tr>
   </tbody>
   <tfoot>
-  <tr><td colspan="3" nowrap="nowrap" class="page"></td></tr>
+  <tr><td colspan="3" nowrap="nowrap" class="page">
+
+  </td></tr>
   </tfoot>
 </table>
 </div>

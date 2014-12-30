@@ -107,8 +107,8 @@ function getAjaxContent(opt,$this,html){
 		if(opt["current_page"]==null){
 			opt["current_page"] = 1;
 		}
-		$data["prism_begin_number"] = (opt["current_page"]-1)*pager_display;
-		$data["prism_end_number"] = $data["prism_begin_number"]+pager_display;
+		$data["@minnum"] = (opt["current_page"]-1)*pager_display;
+		$data["@maxnum"] = $data["@minnum"]+pager_display;
 	}
 	// 同步设定
 	var $async = true;

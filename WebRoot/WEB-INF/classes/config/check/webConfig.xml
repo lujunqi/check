@@ -63,7 +63,7 @@ SELECT validate_num,validate_code,validate_id,validate_status
 	<bean id="vali_list_total" class="com.prism.service.impl.basic.NormalSltService">
 		<property name="sourceMap">
 			<map>
-				<entry key="SQL">
+				<entry key="DSQL">
 					<value>
 <![CDATA[
 SELECT count(1) total

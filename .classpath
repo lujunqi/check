@@ -28,7 +28,6 @@
 	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/json-lib-2.4-jdk15.jar"/>
 	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/jxl-2.6.jar"/>
 	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/poi-3.6-20091214.jar"/>
-	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/prism.jar"/>
 	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/spring-aop-3.2.0.M1.jar"/>
 	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/spring-asm-3.2.0.M1.jar"/>
 	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/spring-aspects-3.2.0.M1.jar"/>
@@ -45,5 +44,6 @@
 	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/sqlite-jdbc-3.7.2.jar"/>
 	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/velocity-1.7.jar"/>
 	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/mysql-connector-java-5.0.4-bin.jar"/>
+	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/mybatis-3.2.0-SNAPSHOT.jar"/>
 	<classpathentry kind="output" path="WebRoot/WEB-INF/classes"/>
 </classpath>
