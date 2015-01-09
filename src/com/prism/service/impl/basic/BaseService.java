@@ -91,9 +91,10 @@ public class BaseService implements Service {
 			if (reqMap.containsKey("@minnum") && reqMap.containsKey("@maxnum")) {
 				int minnum = Integer.parseInt(reqMap.get("@minnum") + "");
 				int maxnum = Integer.parseInt(reqMap.get("@maxnum") + "");
-
+				
 				return cmd.executeSelect(sql, reqMap, minnum, maxnum);
 			} else {
+				System.out.println(sql+"=============");
 				return cmd.executeSelect(sql, reqMap);
 			}
 		} catch (DAOException e) {

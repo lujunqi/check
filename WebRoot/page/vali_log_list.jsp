@@ -21,27 +21,20 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 $(init);
 function init(){
 	$("#list").prism({
-	content: "ajax:vali_list.do",
-	pageUrl:"vali_list_total.do"
+	content: "ajax:vali_log_list.do",
+	pageUrl:"vali_log_list_total.do"
 	});
 }
 function find(){
 	var param = {};
 	param["code"] = $("#code").val();
 	$("#list").prism({
-	content: "ajax:vali_list.do",
-	pageUrl:"vali_list_total.do",
+	content: "ajax:vali_log_list.do",
+	pageUrl:"vali_log_list_total.do",
 	param:param
 	});
 }
 
-function setStatus(data){
-	if(data["validate_status"]==0){
-		return "在用";
-	}else{
-		return "作废";
-	}
-}
 </script>
 </head>
 <body class="mainBody">
@@ -51,13 +44,13 @@ function setStatus(data){
     <div class="crumb-m clearfix">
     	<a   class="home"><b>&nbsp;</b>首页</a>
     	<a  class="link">防伪查询</a>
-    	<span class="label">防伪查询</span>
+    	<span class="label">防伪查询日志</span>
     </div>
 </div>
 
 <div class="wrap-inner comWrap">
 <div class="wrap-tit clearfix">
-    <h3 class="wrap-tit-l"><span class="icon">防伪查询</span></h3>
+    <h3 class="wrap-tit-l"><span class="icon">防伪查询日志</span></h3>
     <div class="wrap-tit-r">     
         <div class="filter">
             <span class="mr5"><em>防伪码</em> <input type="text" class="w100" id="code"/> </span> 
@@ -72,15 +65,15 @@ function setStatus(data){
   <thead>
     <tr>
       <th>防伪码编号</th>
-	  <th>查询次数</th>
-	  <th>防伪码状态</th>
+	  <th>手机号码</th>
+	  <th>时间</th>
     </tr>
   </thead>
   <tbody id="list" prism="dataGrid">
   	<tr>
 		<td>#@validate_code#</td>
-		<td>#@validate_num#</td>
-		<td>#@func:setStatus#</td>
+		<td>#@mobile_number#</td>
+		<td>#@in_time#</td>
 	</tr>
   </tbody>
   <tfoot>

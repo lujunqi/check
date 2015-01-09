@@ -85,12 +85,14 @@ function func_page(opt,$this){
 		$.post(opt["pageUrl"],$data,function(data){
 			try{
 				var total_page = Math.ceil(data[0]["total"]/pager_display); //总记录页
+				
 				$page.html(update_page(total_page,current_page));
 				$("a[current_page]",$page).click(function(){
 					var that = $(this);
 					opt["current_page"] = that.attr("current_page");
 					setGriddata($this,opt);//回调获取数据
 				});
+				
 			}catch(e){}
 		},"json");
 	}
@@ -364,7 +366,7 @@ function update_page(total_page,current_page){
       var i;
       var code = '';
       if( total_page < current_page ){
-          alert('总页数不能小于当前页数');
+         // alert('总页数不能小于当前页数');
           return false;    
       }    
       //判断总页数是不是小于 分页的长度，若小于则直接显示

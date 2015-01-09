@@ -65,6 +65,7 @@ if(user_id==null){
           <h2 class="subtit"><a class="" href="#" target="main"><span class="">防伪查询</span></a></h2>
           <ul class="sublist" >
             <li><a target="main" href="page/vali_list.jsp">防伪查询</a></li>
+			<li><a target="main" href="page/vali_log_list.jsp">防伪码查询日志</a></li>
 			<li><a target="main" href="page/vali_create.jsp">生成防伪码</a></li>
           </ul>
 		  

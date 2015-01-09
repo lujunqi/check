@@ -11,10 +11,10 @@
 				<entry key="SQL">
 					<value>
 <![CDATA[
-SELECT T.comm_name USER_NAME,T.comm_id USER_ID,t.comm_code USER_CODE
-  FROM t_comm T
- WHERE T.comm_code = ${USER_ACC<STRING>} 
-   AND T.comm_pwd = ${USER_PWD<STRING>} 
+SELECT comm_name USER_NAME,comm_id USER_ID,comm_code USER_CODE
+  FROM t_comm
+ WHERE comm_code = ${USER_ACC<STRING>} 
+   AND comm_pwd = ${USER_PWD<STRING>} 
 ]]>
 					</value>
 				</entry>
@@ -29,9 +29,9 @@ SELECT T.comm_name USER_NAME,T.comm_id USER_ID,t.comm_code USER_CODE
 				<entry key="SQL">
 					<value>
 <![CDATA[
-UPDATE t_comm T SET T.comm_pwd = ${NEW_USER_PWD<STRING>}
-WHERE T.comm_id = ${session.get('USER_ID')<INT>}
-  AND T.comm_pwd = ${OLD_USER_PWD<STRING>}
+UPDATE t_comm  SET comm_pwd = ${NEW_USER_PWD<STRING>}
+WHERE comm_id = ${session.get('USER_ID')<INT>}
+  AND comm_pwd = ${OLD_USER_PWD<STRING>}
 ]]>
 					</value>
 				</entry>
@@ -47,7 +47,7 @@ WHERE T.comm_id = ${session.get('USER_ID')<INT>}
 					<value>
 <![CDATA[
 SELECT validate_num,validate_code,validate_id,validate_status
-  FROM T_VALIDATE
+  FROM t_validate
  WHERE comm_id = $v.set("session.get('USER_ID')","INT") 
 #if(!$v.isEmpty("code"))
    AND validate_code = $v.set("code","STRING")
@@ -60,6 +60,7 @@ SELECT validate_num,validate_code,validate_id,validate_status
 			</map>
 		</property>
 	</bean>
+
 	<bean id="vali_list_total" class="com.prism.service.impl.basic.NormalSltService">
 		<property name="sourceMap">
 			<map>
@@ -67,7 +68,7 @@ SELECT validate_num,validate_code,validate_id,validate_status
 					<value>
 <![CDATA[
 SELECT count(1) total
-  FROM T_VALIDATE
+  FROM t_validate
  WHERE comm_id = $v.set("session.get('USER_ID')","INT") 
 #if(!$v.isEmpty("code"))
    AND validate_code = $v.set("code","STRING")
@@ -79,14 +80,44 @@ SELECT count(1) total
 			</map>
 		</property>
 	</bean>
-	
+	<bean id="vali_log_list" class="com.prism.service.impl.basic.NormalSltService">
+		<property name="sourceMap">
+			<map>
+				<entry key="DSQL">
+					<value>
+<![CDATA[
+SELECT validate_code,mobile_number,date_format(in_time,'%Y-%m-%d %H:%i:%S') in_time
+  FROM t_validate_log
+ ORDER BY in_time DESC
+]]>
+					</value>
+				</entry>
+				<entry key="VIEW" value="${v.toJson()}" />
+			</map>
+		</property>
+	</bean>
+	<bean id="vali_log_list_total" class="com.prism.service.impl.basic.NormalSltService">
+		<property name="sourceMap">
+			<map>
+				<entry key="DSQL">
+					<value>
+<![CDATA[
+SELECT count(1) total
+  FROM t_validate_log
+]]>
+					</value>
+				</entry>
+				<entry key="VIEW" value="${v.toJson()}" />
+			</map>
+		</property>
+	</bean>
 	<bean id="vali_create" class="com.allinpay.check.ValiCreate">
 		<property name="sourceMap">
 			<map>
 				<entry key="SQL">
 					<value>
 <![CDATA[
-INSERT INTO T_VALIDATE(validate_code,comm_id,validate_num,validate_status)
+INSERT INTO t_validate(validate_code,comm_id,validate_num,validate_status)
 values(${code<STRING>},${session.get('USER_ID')<INT>},0,0)
 ]]>
 					</value>
