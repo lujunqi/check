@@ -65,9 +65,8 @@ function dialog(v_content){
 <div id="login">
 
     <div class="form" id="myForm" >
-    
+   <div align="center" style="font-size:30px; font-weight:bold;">云科防伪查询系统</div>
         <ul>
-
         <li><label>用户名：</label><span class="inputWrap"><span class="fix">
         <input class="txt"  type="text" id="USER_ACC" name="USER_ACC" />
         </span></span></li>
