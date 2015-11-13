@@ -3,7 +3,7 @@
 */
 
 // current page
-var curPage = 1;
+
 
 // init sidebar
 function initSide() {
@@ -53,23 +53,7 @@ function resizeContent() {
     $('.mainFrame').height(framH);
 }
 // comTablList 
-function initComTablist() {
-	$('.comTabList').each(function() {
-		var $listObj = $(this);
-		$("tr:first", $listObj).addClass('first').end().find('tr:last').addClass('last');
-		$('tr:odd', $listObj).addClass('odd');
-		$('tr:even', $listObj).addClass('eve');
-		$('tr', $listObj).each(function() {
-			$(this).find('th:last, td:last').addClass('last');
-		});
-		$('tr', $listObj).hover(function() {
-			$(this).addClass('hover');
-		}, function() {
-			$(this).removeClass('hover');
-		});
-		return false;
-	});
-}
+
 function showLoader() {
 		$.blockUI({
 			message: "<p class='ajaxLoader'><image src='images/loader/loader_00_32.gif' /><span>加载中...</span></p>",
@@ -101,7 +85,7 @@ $(document).ready(function(e) {
 	initSide();
 	switchBar();
 	checkAll();
-	initComTablist();
+	//initComTablist();
 });
 
 // checkAllBox
@@ -130,52 +114,6 @@ function checkAll() {
 		}
 		bindCheck($(this), $('#cbCheckAll'));
 	});
-}
-
-var pageSize = 3;
-function paginate(node,$url,req,callback,key){
-	var nReq = eval("("+$.toJSON(req)+")");
-	nReq["@minnum"] = 0;
-	nReq["@maxnum"] = 10;
-	$display = 4;
-	$.post($url,nReq,function(data){
-		if(data!=null){
-			var t_total = "TOTAL";
-			if(key!=null){
-				t_total = key;
-			}
-			var total = data[0][t_total];
-			var $count = parseInt(total / pageSize);
-			if (total % pageSize > 0) {
-				$count = parseInt($count + 1);
-			}
-			var minnum = req["@minnum"];
-			var $start = parseInt(minnum / pageSize)+1;
-			if (minnum % pageSize > 0) {
-				$start = parseInt($start + 1);
-			}
-			if(minnum==0){
-				$start = 1;
-			}
-			$(node).paginate({
-				count: $count,
-				start: $start,
-				display: $display,
-				border: false,
-				text_color: '#79B5E3',
-				background_color: 'none',
-				text_hover_color: '#2573AF',
-				background_hover_color: 'none',
-				images: false,
-				mouse: 'press',
-				onChange: function (page) {
-					req["@minnum"] = (parseInt(page)-1) * pageSize;
-					//dataList();
-					callback(req);
-				}
-			});
-		}
-	},"json");	
 }
 
 

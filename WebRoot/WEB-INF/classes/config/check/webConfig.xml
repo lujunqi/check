@@ -22,6 +22,48 @@ SELECT comm_name USER_NAME,comm_id USER_ID,comm_code USER_CODE
 			</map>
 		</property>
 	</bean>
+	<bean id="zszj_add" class="com.prism.service.impl.basic.NormalUptService">
+		<property name="sourceMap">
+			<map>
+				<entry key="SQL">
+					<value>
+<![CDATA[
+INSERT INTO tb_zszj(tel,name)VALUES(${tel<STRING>},${name<STRING>})
+]]>
+					</value>
+				</entry>
+				<entry key="VIEW" value="${v.toJson()}" />
+			</map>
+		</property>
+	</bean>
+	<bean id="zszj_list" class="com.prism.service.impl.basic.NormalSltService">
+		<property name="sourceMap">
+			<map>
+				<entry key="DSQL">
+					<value>
+<![CDATA[
+select tel,name from tb_zszj order by version_date desc
+]]>
+					</value>
+				</entry>
+				<entry key="VIEW" value="${v.toJson()}" />
+			</map>
+		</property>
+	</bean>
+	<bean id="zszj_list_total" class="com.prism.service.impl.basic.NormalSltService">
+		<property name="sourceMap">
+			<map>
+				<entry key="DSQL">
+					<value>
+<![CDATA[
+select count(1) total from tb_zszj order by version_date desc
+]]>
+					</value>
+				</entry>
+				<entry key="VIEW" value="${v.toJson()}" />
+			</map>
+		</property>
+	</bean>
 	
 	<bean id="updPwd" class="com.prism.service.impl.basic.NormalUptService">
 		<property name="sourceMap">
@@ -39,7 +81,7 @@ WHERE comm_id = ${session.get('USER_ID')<INT>}
 			</map>
 		</property>
 	</bean>
-	
+
 	<bean id="vali_list" class="com.prism.service.impl.basic.NormalSltService">
 		<property name="sourceMap">
 			<map>
@@ -126,6 +168,24 @@ values(${code<STRING>},${session.get('USER_ID')<INT>},0,0)
 			</map>
 		</property>
 	</bean>
-		
+	<bean id="weixin" class="com.allinpay.check.WeiXinService"></bean>
+	<bean id="txl" class="com.prism.service.impl.basic.NormalSltService">
+		<property name="sourceMap">
+			<map>
+				<entry key="DSQL">
+					<value>
+<![CDATA[
+select txl_name, txl_tel1, txl_tel2, txl_mail, txl_stel
+  from tb_txl
+ where 1 = 1 
+#if(!$v.isEmpty("searchContext"))
+   and txl_name like '%' || $v.set("searchContext","STRING") || '%'
+#end
+]]>
+					</value>
+				</entry>
+			</map>
+		</property>
+	</bean>
 
 </beans>

@@ -86,6 +86,7 @@ public class BaseService implements Service {
 	protected List<Map<String, Object>> selectResult(String key)
 			throws BMOException {
 		String sql = (String) sourceMap.get(key);
+		System.out.println(sql+"=============");
 		DBCommand cmd = new DBCommand(dbConn);
 		try {
 			if (reqMap.containsKey("@minnum") && reqMap.containsKey("@maxnum")) {
@@ -94,7 +95,7 @@ public class BaseService implements Service {
 				
 				return cmd.executeSelect(sql, reqMap, minnum, maxnum);
 			} else {
-				System.out.println(sql+"=============");
+				
 				return cmd.executeSelect(sql, reqMap);
 			}
 		} catch (DAOException e) {

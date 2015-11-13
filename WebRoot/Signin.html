@@ -1,0 +1,57 @@
+
+<!DOCTYPE html>
+<!-- saved from url=(0063)http://www.17sucai.com/preview/2/2015-06-02/moban477/index.html -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Signin</title>
+<link href="Signin_files/style.css" rel="stylesheet" type="text/css">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!--webfonts-->
+<link href="Signin_files/css" rel="stylesheet" type="text/css">
+<script type="text/javascript" src="js/jquery-1.7.2.min.js"></script>
+<script type="text/javascript">
+function myFunction(){
+	var name = $("#name").val();
+	var tel = $("#tel").val();
+	if(!(/^(13|15|18)[0-9]{9}$/.test(tel))){
+		alert("手机错误");
+		return;
+	}
+	if(name=="" || name=="姓名"){
+		alert("姓名不能为空");
+		return;
+	}
+	if(tel==""){
+		alert("手机不能为空");
+		return;
+	}
+	var url = "zszj_add.do";
+	var param = {};
+	param["name"] = encodeURI(name);
+	param["tel"] = tel;
+	
+	$.post(url,param,function(data){
+		if(data.code==1){
+			window.location.href="http://sjkh.stocke.com.cn/p/PYnPaY";
+		}else{
+			alert("系统错误");
+		}
+	},"json");
+}
+</script>
+<!--//webfonts-->
+</head>
+<body>
+	<h2>&nbsp;</h2>
+		<div class="app-cam">
+			<div class="cam"><span class="clear"><img src="Signin_files/top.jpg" width="375" height="106"></span></div>
+			<form onSubmit="return false;">
+			
+				<input type="text" class="text1" id="tel" value="手机" onFocus="if(this.value == &#39;手机&#39;){this.value = &#39;&#39;;}" onBlur="if (this.value == &#39;&#39;) {this.value = &#39;手机&#39;;}">
+				<input type="text" class="text2" id="name" value="姓名" onFocus="if(this.value == &#39;姓名&#39;){this.value = &#39;&#39;;}" onBlur="if (this.value == &#39;&#39;) {this.value = &#39;姓名&#39;;}">
+				<div class="submit"><input type="submit" onClick="myFunction()" value="提 交"></div>
+				<div class="clear"></div>
+				
+			</form>
+		</div>
+
+</body></html>

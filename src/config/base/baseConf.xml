@@ -20,7 +20,7 @@
 			<map>
 				<entry key="username" value="root" />
 				<entry key="password" value="123456" />
-				<entry key="url" value="jdbc:mysql://localhost/dodou">
+				<entry key="url" value="jdbc:mysql://localhost/test">
 				</entry>
 				<entry key="driverClassName" value="com.mysql.jdbc.Driver" />
 			</map>
